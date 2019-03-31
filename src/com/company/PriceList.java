@@ -1,5 +1,6 @@
 package com.company;
 
+import javafx.util.Pair;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -15,15 +16,15 @@ public class PriceList{
                 return true;
             }
 
-            public void removeProduct(long id) {
+            public boolean removeProduct(long id) {
                 if (!product.containsKey(id)) throw new NoSuchElementException();
                 product.remove(id);
+                return true;
             }
 
             public String getProduct(long id) {
-                if (product.containsKey(id))
+                if (!product.containsKey(id)) throw  new NoSuchElementException();
                 return product.get(id).toString();
-                else throw new NoSuchElementException();
             }
 
             public String getProductName(long id) {
@@ -44,6 +45,17 @@ public class PriceList{
             public void setProductPrice(long id, Double price) {
                 if (!product.containsKey(id)) throw new NoSuchElementException();
                 product.get(id).setPrice(price);
+            }
+
+            public double sum(Pair<Long, Integer>... list) {
+                double sum = 0;
+                for (Pair<Long, Integer> Products: list){
+                    long idd = Products.getKey();
+                    Product pRoduct = product.get(idd);
+                    double pRice = pRoduct.getPrice();
+                    sum += Products.getValue() * pRice;
+                }
+                return sum;
             }
 
 
