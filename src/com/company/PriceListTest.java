@@ -80,6 +80,19 @@ class PriceListTest {
         assertEquals(sum3, priceList.sum(pair2, pair3));
 
     }
+    @Test
+    void setProductName(){
+        priceList.addProduct(124, product1, price1);
+        priceList.setProductName(124, "Зефир");
+        assertEquals("Зефир", priceList.getProductName(124));
+    }
+
+    @Test
+    void setProductPrice(){
+        priceList.addProduct(125, product2, 3669.90);
+        priceList.setProductPrice(125,3599.90);
+        assertEquals(3599.90, priceList.getProductPrice(125));
+    }
 
 
     @org.junit.jupiter.api.Test
