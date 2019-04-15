@@ -63,10 +63,6 @@ class PriceListTest {
 
     @Test
     void getProduct(){
-        assertTrue(true, priceList.getProduct(109));
-        assertTrue(true, priceList.getProduct(120));
-        assertTrue(true, priceList.getProduct(130));
-        assertThrows(NoSuchElementException.class, () -> priceList.getProduct(0));
     }
 
 
@@ -97,8 +93,15 @@ class PriceListTest {
 
     @org.junit.jupiter.api.Test
     void removeProduct() {
-        assertEquals(true, priceList.removeProduct(id1));
-        assertEquals(true, priceList.removeProduct(id3));
-        assertThrows(NoSuchElementException.class, () -> priceList.removeProduct(0));
+        //Проверяем наличие продукта
+        assertEquals(product1, priceList.getProductName(109));
+        //Удаляем этот продукт
+        assertEquals(true, priceList.removeProduct(109));
+        //Снова проверяем его наличие путем запроса имени
+        try {
+            priceList.getProductName(109);
+            fail();
+        } catch (NoSuchElementException e) {
+        }
     }
 }
