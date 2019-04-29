@@ -28,6 +28,7 @@ class PriceListTest {
     long id3 = 130;
     long id4 = 140;
 
+
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
         priceList.addProduct(id1, product1, price1);
@@ -62,7 +63,10 @@ class PriceListTest {
     }
 
     @Test
-    void getProduct(){
+    void getProduct() throws Exception {
+       // assertEquals(product1 + " " +  price1, priceList.getProduct(id1));
+        priceList.addProduct(126, "", 249.8);
+        assertEquals("Печеньки", priceList.getProduct(126));
     }
 
 
@@ -93,15 +97,8 @@ class PriceListTest {
 
     @org.junit.jupiter.api.Test
     void removeProduct() {
-        //Проверяем наличие продукта
         assertEquals(product1, priceList.getProductName(109));
-        //Удаляем этот продукт
         assertEquals(true, priceList.removeProduct(109));
-        //Снова проверяем его наличие путем запроса имени
-        try {
-            priceList.getProductName(109);
-            fail();
-        } catch (NoSuchElementException e) {
-        }
+        assertThrows(NoSuchElementException.class, () -> priceList.getProductName(109));
     }
 }

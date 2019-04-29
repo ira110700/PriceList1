@@ -1,7 +1,6 @@
 package com.company;
 
 import javafx.util.Pair;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -23,12 +22,12 @@ public class PriceList{
                 return true;
             }
 
-            public Product getProduct(long id) {
-                for (Product element : new ArrayList<Product>()) {
-                    if (id == element.getid())
-                        return element;
+            public  Product getProduct(long id) throws Exception{
+                for(Map.Entry<Long, Product> entry: product.entrySet()){
+                    if (id == entry.getKey())
+                    return entry.getValue();
                 }
-                throw  new NoSuchElementException();
+                throw new NoSuchElementException();
             }
 
             public String getProductName(long id) {
