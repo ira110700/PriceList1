@@ -63,10 +63,11 @@ class PriceListTest {
     }
 
     @Test
-    void getProduct() throws Exception {
-       // assertEquals(product1 + " " +  price1, priceList.getProduct(id1));
-        priceList.addProduct(126, "", 249.8);
-        assertEquals("Печеньки", priceList.getProduct(126));
+   public void getProduct(){
+        assertEquals( price1, priceList.getProduct(id1).getPrice());
+        priceList.addProduct(126, "Печеньки", 249.8);
+        assertEquals("Печеньки", priceList.getProduct(126).getName());
+        assertEquals(249.8, priceList.getProduct(126).getPrice());
     }
 
 
